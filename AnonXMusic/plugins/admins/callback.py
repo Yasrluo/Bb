@@ -34,6 +34,7 @@ from config import (
     votemode,
 )
 from pyrogram import Client
+from pyrogram import Client
 from pyrogram.raw import functions, types
 
 # تعريف العميل
@@ -47,12 +48,13 @@ async def on_raw_update(client, update):
         if isinstance(update.call, types.GroupCallDiscarded):
             # بداية المحادثة الصوتية
             print("↢ تم بدء المحادثة الصوتية..⚘")
-        elif isinstance(update.call, types.GroupCallDiscarded):
+        else:
             # نهاية المحادثة الصوتية
             print("- تم إنهاء مكالمة")
 
 # ابدأ العميل
 app.start()
+
 
 
 checker = {}

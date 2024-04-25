@@ -35,20 +35,23 @@ from config import (
 )
 from pyrogram import Client
 
+# تعريف العميل
+app = Client("my_account")
 
 # عند بدء المحادثة الصوتية
-@app.on_callback_query()
-async def on_callback_query(client, chat_id):
+@app.on_voice_chat_started()
+async def on_voice_chat_started(client, chat_id):
     print("↢ تم بدء المحادثة الصوتية..⚘")
     # يمكنك وضع الكود الخاص ببدء المحادثة الصوتية هنا
 
 # بعد انتهاء المحادثة الصوتية
-@app.on_callback_query()
-async def on_callback_query(client, chat_id):
+@app.on_voice_chat_ended()
+async def on_voice_chat_ended(client, chat_id):
     print("- تم إنهاء مكالمة")
 
 # ابدأ العميل
 app.start()
+
 
 checker = {}
 upvoters = {}

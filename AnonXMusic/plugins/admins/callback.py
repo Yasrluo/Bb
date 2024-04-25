@@ -37,7 +37,7 @@ from pyrogram import Client
 
 
 # عند بدء المحادثة الصوتية
-@app.on_voice_chat_started()
+@app.on_callback_query()
 async def on_voice_chat_started(client, chat_id):
     print("↢ تم بدء المحادثة الصوتية..⚘")
     # يمكنك وضع الكود الخاص ببدء المحادثة الصوتية هنا

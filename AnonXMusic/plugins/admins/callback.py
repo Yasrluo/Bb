@@ -33,7 +33,21 @@ from config import (
     confirmer,
     votemode,
 )
-from strings import get_string
+from pyrogram import Client
+
+# عند بدء المحادثة الصوتية
+@Client.on_voice_chat_started()
+async def on_voice_chat_started(client, chat_id):
+    print("↢ تم بدء المحادثة الصوتية..⚘")
+    # يمكنك وضع الكود الخاص ببدء المحادثة الصوتية هنا
+
+# بعد انتهاء المحادثة الصوتية
+@Client.on_voice_chat_ended()
+async def on_voice_chat_ended(client, chat_id):
+    print("- تم إنهاء مكالمة")
+
+# ابدأ العميل
+app.start()
 
 checker = {}
 upvoters = {}

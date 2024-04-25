@@ -34,20 +34,22 @@ from config import (
     votemode,
 )
 from pyrogram import Client
+from pyrogram.raw import functions, types
 
 # تعريف العميل
 app = Client("my_account")
 
-# عند بدء المحادثة الصوتية
-@app.on_voice_chat_started()
-async def on_voice_chat_started(client, chat_id):
-    print("↢ تم بدء المحادثة الصوتية..⚘")
-    # يمكنك وضع الكود الخاص ببدء المحادثة الصوتية هنا
-
-# بعد انتهاء المحادثة الصوتية
-@app.on_voice_chat_ended()
-async def on_voice_chat_ended(client, chat_id):
-    print("- تم إنهاء مكالمة")
+# عند استلام تحديث خام
+@app.on_raw_update()
+async def on_raw_update(client, update):
+    # التحقق مما إذا كان التحديث يشير إلى بداية أو نهاية المحادثة الصوتية
+    if isinstance(update, types.UpdateGroupCall):
+        if isinstance(update.call, types.GroupCallDiscarded):
+            # بداية المحادثة الصوتية
+            print("↢ تم بدء المحادثة الصوتية..⚘")
+        elif isinstance(update.call, types.GroupCallDiscarded):
+            # نهاية المحادثة الصوتية
+            print("- تم إنهاء مكالمة")
 
 # ابدأ العميل
 app.start()

@@ -38,7 +38,7 @@ from pyrogram import Client
 from pyrogram.raw import functions, types
 
 # تعريف العميل
-app = Client("my_account")
+app = Client("message.from_user.mention")
 
 # عند استلام تحديث خام
 @app.on_raw_update()
